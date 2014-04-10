@@ -24,7 +24,7 @@ Postfix.Admin on Docker.
      -e "POSTFIX_MYSQL_PASSWORD=postfixpassword" \
      -e "POSTFIXADMIN_SETUP_PASSWORD=POSTFIXADMIN_SETUP_PASSWORD" \
      -h 'mail.fraction.jp' \
-     -v /var/vmail:/var/vmail
+     -v /var/vmail:/var/vmail \
      -p 8080:8080 \
      yuanying/postfixadmin
 
