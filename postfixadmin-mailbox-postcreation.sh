@@ -33,7 +33,7 @@ if [ `echo $3 | fgrep '..'` ]; then
     exit 1
 fi
  
-maildir="${basedir}/$3"
+maildir="${basedir}/$3/Maildir/"
 parent=`dirname "$maildir"`
 if [ ! -d "$parent" ]; then
     if [ -e "$parent" ]; then
