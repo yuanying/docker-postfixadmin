@@ -23,11 +23,18 @@ RUN curl http://downloads.sourceforge.net/project/postfixadmin/postfixadmin/post
 RUN tar zxvf postfixadmin-2.3.7.tar.gz
 RUN ln -s /opt/postfixadmin-2.3.7 /opt/postfixadmin
 
+RUN groupadd -g 1500 vmail && \
+    useradd -g vmail -u 1500 vmail -d /var/vmail && \
+    mkdir /var/vmail && \
+    chown vmail:vmail /var/vmail
+
 ADD config.inc.php /tmp/config.inc.php
 RUN mv /opt/postfixadmin/config.inc.php /opt/postfixadmin/config.inc.php.old
 RUN mv /tmp/config.inc.php /opt/postfixadmin/config.inc.php
 ADD run /usr/local/bin/run
 RUN chmod +x /usr/local/bin/run
+ADD postfixadmin-mailbox-postcreation.sh /usr/local/bin/postfixadmin-mailbox-postcreation.sh
+RUN chmod +x /usr/local/bin/postfixadmin-mailbox-postcreation.sh
 
 EXPOSE 8080
 
