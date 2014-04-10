@@ -5,7 +5,7 @@
 # -h 'mail.fraction.jp' \
 # -v /home/vmail:/var/vmail \
 # -p 8080:8080 \
-# yuanying/email-server
+# yuanying/postfixadmin
 #
 FROM ubuntu:precise
 MAINTAINER O. Yuanying "yuan-docker@fraction.jp"
