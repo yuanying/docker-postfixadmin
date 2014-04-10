@@ -1,0 +1,15 @@
+#!/bin/bash
+set -e
+
+export POSTFIX_DOMAIN=`hostname --domain`
+export POSTFIX_FQDN=`hostname --fqdn`
+
+sed -i "s/__REPLACE_DATABASE_HOST__/${MYSQL_PORT_3306_TCP_ADDR}/g" /opt/postfixadmin/config.inc.php
+sed -i "s/__REPLACE_DATABASE_PORT__/${MYSQL_PORT_3306_TCP_PORT}/g" /opt/postfixadmin/config.inc.php
+sed -i "s/__REPLACE_DATABASE_PASSWORD__/${POSTFIX_MYSQL_PASSWORD}/g" /opt/postfixadmin/config.inc.php
+sed -i "s/__REPLACE_POSTFIXADMIN_SETUP_PASSWORD__/${POSTFIXADMIN_SETUP_PASSWORD}/g" /opt/postfixadmin/config.inc.php
+sed -i "s/__REPLACE_DOMAIN_NAME__/${POSTFIX_DOMAIN}/g" /opt/postfixadmin/config.inc.php
+sed -i "s/__REPLACE_FQDN__/${POSTFIX_FQDN}/g" /opt/postfixadmin/config.inc.php
+
+cd /opt/postfixadmin
+/usr/bin/php -S 0.0.0.0:8080
