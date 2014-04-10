@@ -11,6 +11,10 @@ Postfix.Admin on Docker.
 ## Install
 
     docker build -t yuanying/postfixadmin .
+    sudo groupadd -g 1500 vmail
+    sudo useradd -g vmail -u 1500 vmail -d /var/vmail
+    sudo mkdir /var/vmail
+    sudo chown vmail:vmail /var/vmail
 
 ## How to use
 
@@ -20,6 +24,7 @@ Postfix.Admin on Docker.
      -e "POSTFIX_MYSQL_PASSWORD=postfixpassword" \
      -e "POSTFIXADMIN_SETUP_PASSWORD=POSTFIXADMIN_SETUP_PASSWORD" \
      -h 'mail.fraction.jp' \
+     -v /var/vmail:/var/vmail
      -p 8080:8080 \
      yuanying/postfixadmin
 
